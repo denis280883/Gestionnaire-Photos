@@ -111,7 +111,7 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 		this.dim_y = dim_y;
 	}
 	
-	
+	// Load NB_DISPLAY_PICTURES pictures on the screen
 	private void LoadPicture() throws SlickException{
 		
 		// pictures left:
@@ -122,7 +122,9 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 		
 		if (pictures_path.size() != 0) {
 			pictures[1] = new Image(pictures_path.get(i_picture+1));
-			if (pictures_path.size() > 1)
+			
+			// picture right
+			if (pictures_path.size() > 1 && i_picture+2<pictures_path.size())
 				pictures[2] = new Image(pictures_path.get(i_picture+2));
 			else
 				pictures[2] = null;
@@ -272,10 +274,10 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 	public void controlPressed(Command command) {
 		message = "Pressed: "+command;
 		Command tt = command;
-		if (command==right && i_picture+NB_DISPLAY_PICTURES<pictures_path.size()) {
+		if (command==right && i_picture+NB_DISPLAY_PICTURES<=pictures_path.size()) {
 			i_picture++;
 		}
-		else if (command==left && i_picture>0) {		
+		else if (command==left && i_picture>=0) {		
 			i_picture--;
 		}
 			
