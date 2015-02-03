@@ -199,15 +199,14 @@ public class SlickPictures extends BasicGame implements InputProviderListener  {
         	
 
         }
-        /*
-        if ((input.getMouseX()>45 && input.getMouseX()<55) && (input.getMouseY()>370 && input.getMouseY()<500)) { 
-        	System.out.println("x:"+input.getMouseX()+ " y:"+input.getMouseY());
-        	MovePictures(left);
-        }*/
         
-        if (Mouse.isButtonDown(0))
+        if ((Mouse.isButtonDown(0)) && ((input.getMouseX()>45 && input.getMouseX()<55) && (input.getMouseY()>370 && input.getMouseY()<500))) { 
         	MovePictures(left);
-        	//System.out.println("test");
+        }
+        
+        if ((Mouse.isButtonDown(0)) && ((input.getMouseX()>45 && input.getMouseX()<55) && (input.getMouseY()>370 && input.getMouseY()<500))) { 
+        	MovePictures(right);
+        }
 
 	}
 	
