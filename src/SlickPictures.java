@@ -196,9 +196,11 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 		if (pictures[2] != null) {
 			int width = pictures[2].getWidth();
 			int height = pictures[2].getHeight();
+			float facteur_height=0.0f;
+			
 			
 			if (height > MAX_HEIGHT_SIDE) {
-				float facteur_height = height / MAX_HEIGHT_SIDE;
+		        facteur_height = (float)height / (float)MAX_HEIGHT_SIDE;
 				height = MAX_HEIGHT_SIDE;
 				width = (int)(width / facteur_height);
 			}
@@ -206,6 +208,9 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 			int pos_x = dim_x - MARGIN_SIDE;
 			int pos_y = (dim_y - height) / 2;
 			pictures[2].draw(pos_x, pos_y, width, height);
+			//System.out.println(width);
+			System.out.println(height / MAX_HEIGHT_SIDE);
+			
 		}
 		
 		if (pictures[0] != null) {
