@@ -121,9 +121,9 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 		//pictures[0] = null;
 		pictures[0] = new Image(pictures_path.get(0));
 		if (pictures_path.size() != 0) {
-			pictures[1] = new Image(pictures_path.get(0));
+			pictures[1] = new Image(pictures_path.get(1));
 			if (pictures_path.size() > 1)
-				pictures[2] = new Image(pictures_path.get(1));
+				pictures[2] = new Image(pictures_path.get(2));
 			else
 				pictures[2] = null;
 		}
@@ -142,6 +142,7 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
         // full screen
         //arg0.setFullscreen(true);
         
+        // Load event Keyboard
 		provider = new InputProvider(arg0.getInput());
 		provider.addListener(this);
 		
