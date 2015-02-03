@@ -71,11 +71,11 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 	
 	
 	
-	
-	
 	private Command run = new BasicCommand("run");
 	private Command left = new BasicCommand("left");
 	private Command right = new BasicCommand("right");
+	
+
 	
 	/** The message to be displayed */
 	private String message = "";
@@ -166,7 +166,9 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 		
 		provider.bindCommand(new KeyControl(Input.KEY_LEFT), left);
 		provider.bindCommand(new KeyControl(Input.KEY_RIGHT), right);
-		provider.bindCommand(new KeyControl(Input.KEY_A), run);
+		//provider.bindCommand(new KeyControl(Input.KEY_A), run);
+		
+		
 		provider.bindCommand(new ControllerDirectionControl(0, ControllerDirectionControl.LEFT), run);
 		provider.bindCommand(new KeyControl(Input.KEY_UP), jump);
 		provider.bindCommand(new KeyControl(Input.KEY_W), jump);
@@ -256,9 +258,6 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 		}*/
 		//pictures[0].draw(0, 0, new Color(90, 90, 90));
 		
-		Button btn = new Button();
-		btn.setLabel("test");
-	       btn.setVisible(true);
 	       
 		g.drawString("Press A, W, Left, Up, space, mouse button 1,and gamepad controls",10,50);
 		g.drawString(message,50,100);
@@ -289,7 +288,6 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	/**
