@@ -20,6 +20,7 @@ import javax.tools.JavaCompiler;
 
 
 
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.gui.*;
 import org.newdawn.slick.geom.*;
@@ -52,6 +53,8 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 
 	// Variables
 	private int dim_x, dim_y;
+	private int i_picture = 0;
+	
 	private ArrayList<String> pictures_path = new ArrayList<String>();
 	
 	private Image[] pictures = new Image[NB_DISPLAY_PICTURES];
@@ -67,7 +70,11 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 	
 	
 	
+	
+	
+	
 	private Command run = new BasicCommand("run");
+	private Command left = new BasicCommand("left");
 	private Command right = new BasicCommand("right");
 	
 	/** The message to be displayed */
@@ -105,7 +112,21 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 	}
 	
 	
-	
+	private void LoadPicture() throws SlickException{
+		pictures[0] = new Image(pictures_path.get(i_picture));
+		if (pictures_path.size() != 0) {
+			pictures[1] = new Image(pictures_path.get(i_picture+1));
+			if (pictures_path.size() > 1)
+				pictures[2] = new Image(pictures_path.get(i_picture+2));
+			else
+				pictures[2] = null;
+		}
+		else {
+			pictures[1] = null;
+			pictures[2] = null;
+		}
+		
+	}
 	
 	
 	@Override
@@ -119,18 +140,7 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 		findFiles(PICTURES_PATH);
 		
 		//pictures[0] = null;
-		pictures[0] = new Image(pictures_path.get(0));
-		if (pictures_path.size() != 0) {
-			pictures[1] = new Image(pictures_path.get(1));
-			if (pictures_path.size() > 1)
-				pictures[2] = new Image(pictures_path.get(2));
-			else
-				pictures[2] = null;
-		}
-		else {
-			pictures[1] = null;
-			pictures[2] = null;
-		}
+		LoadPicture();
 		
 
 		
@@ -146,7 +156,7 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 		provider = new InputProvider(arg0.getInput());
 		provider.addListener(this);
 		
-		provider.bindCommand(new KeyControl(Input.KEY_LEFT), run);
+		provider.bindCommand(new KeyControl(Input.KEY_LEFT), left);
 		provider.bindCommand(new KeyControl(Input.KEY_RIGHT), right);
 		provider.bindCommand(new KeyControl(Input.KEY_A), run);
 		provider.bindCommand(new ControllerDirectionControl(0, ControllerDirectionControl.LEFT), run);
@@ -255,6 +265,23 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 	 */
 	public void controlPressed(Command command) {
 		message = "Pressed: "+command;
+		Command tt = command;
+		if (command==right && i_picture+NB_DISPLAY_PICTURES<pictures_path.size()) {
+			i_picture++;
+		}
+		else if (command==left && i_picture>0) {		
+			i_picture--;
+		}
+			
+		
+		//Load others pictures
+		try {
+			LoadPicture();
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
