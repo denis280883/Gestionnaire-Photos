@@ -53,7 +53,7 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 
 	// Variables
 	private int dim_x, dim_y;
-	private int i_picture = 0;
+	private int i_picture = -1;
 	
 	private ArrayList<String> pictures_path = new ArrayList<String>();
 	
@@ -113,7 +113,13 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 	
 	
 	private void LoadPicture() throws SlickException{
-		pictures[0] = new Image(pictures_path.get(i_picture));
+		
+		// pictures left:
+		if (i_picture<0)
+			pictures[0] = null; // not picture on the left
+		else
+			pictures[0] = new Image(pictures_path.get(i_picture));
+		
 		if (pictures_path.size() != 0) {
 			pictures[1] = new Image(pictures_path.get(i_picture+1));
 			if (pictures_path.size() > 1)
