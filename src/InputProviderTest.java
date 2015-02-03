@@ -14,6 +14,7 @@ import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.command.KeyControl;
 import org.newdawn.slick.command.MouseButtonControl;
+import org.lwjgl.input.Mouse;
 
 /**
  * A test for abstract input via InputProvider
@@ -76,7 +77,8 @@ public class InputProviderTest extends BasicGame implements InputProviderListene
 	 * @see org.newdawn.slick.command.InputProviderListener#controlPressed(org.newdawn.slick.command.Command)
 	 */
 	public void controlPressed(Command command) {
-		message = "Pressed: "+command;
+
+		
 	}
 
 	/**

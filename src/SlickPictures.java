@@ -1,29 +1,14 @@
-import java.awt.Button;
-import java.awt.Label;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.tools.JavaCompiler;
-
-
-
-
-
-
-
-
-
 
 
 
 
 import org.newdawn.slick.*;
-import org.newdawn.slick.gui.*;
-import org.newdawn.slick.geom.*;
 import org.newdawn.slick.command.BasicCommand;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.ControllerButtonControl;
@@ -31,13 +16,13 @@ import org.newdawn.slick.command.ControllerDirectionControl;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.command.KeyControl;
-import org.newdawn.slick.command.MouseButtonControl;
-import org.newdawn.slick.fills.*;
+//import org.newdawn.slick.command.MouseButtonControl;
+import org.lwjgl.input.Mouse;
 
 
 
 
-public class SlickPictures extends BasicGame implements InputProviderListener {
+public class SlickPictures extends BasicGame implements InputProviderListener  {
 	
 	// constantes
 	private static final String PICTURES_PATH = "./Pictures/";
@@ -136,6 +121,25 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 		
 	}
 	
+	private void MovePictures(Command command)
+	{
+		if (command==right && i_picture+NB_DISPLAY_PICTURES<=pictures_path.size()) {
+			i_picture++;
+		}
+		else if (command==left && i_picture>=0) {		
+			i_picture--;
+		}
+			
+		
+		//Load others pictures
+		try {
+			LoadPicture();
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	@Override
 	// Chargement des ressources graphiques + initialisation de l'état de l'appli
@@ -154,8 +158,8 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 		
         //set up a nice blue background
        // Color background = new Color(71,102,124);
-        Color background = new Color(71,102,255);
-        arg0.getGraphics().setBackground(background);
+        //Color background = new Color(71,102,255);
+        //arg0.getGraphics().setBackground(background);
         
         // full screen
         //arg0.setFullscreen(true);
@@ -174,11 +178,12 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 		provider.bindCommand(new KeyControl(Input.KEY_W), jump);
 		provider.bindCommand(new ControllerDirectionControl(0, ControllerDirectionControl.UP), jump);
 		provider.bindCommand(new KeyControl(Input.KEY_SPACE), attack);
-		provider.bindCommand(new MouseButtonControl(0), attack);
+		//provider.bindCommand(new MouseButtonControl(0), attack);
 		provider.bindCommand(new ControllerButtonControl(0, 1), attack);
+		
+
         
 	}
-	
 	
 	
 
@@ -187,7 +192,28 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 	public void update(GameContainer arg0, int arg1) throws SlickException {
 		// TODO Auto-generated method stub
 		
+		Input input = arg0.getInput();
+		
+        if(input.isKeyDown(Input.KEY_DOWN))
+        {
+        	
+
+        }
+        /*
+        if ((input.getMouseX()>45 && input.getMouseX()<55) && (input.getMouseY()>370 && input.getMouseY()<500)) { 
+        	System.out.println("x:"+input.getMouseX()+ " y:"+input.getMouseY());
+        	MovePictures(left);
+        }*/
+        
+        if (Mouse.isButtonDown(0))
+        	MovePictures(left);
+        	//System.out.println("test");
+
 	}
+	
+
+	
+
 	
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
@@ -261,8 +287,9 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 	       
 		g.drawString("Press A, W, Left, Up, space, mouse button 1,and gamepad controls",10,50);
 		g.drawString(message,50,100);
+		g.drawLine(30, 400, 100, 100);
 	       
-	       
+
 	}
 
 
@@ -272,22 +299,8 @@ public class SlickPictures extends BasicGame implements InputProviderListener {
 	 */
 	public void controlPressed(Command command) {
 		message = "Pressed: "+command;
-		Command tt = command;
-		if (command==right && i_picture+NB_DISPLAY_PICTURES<=pictures_path.size()) {
-			i_picture++;
-		}
-		else if (command==left && i_picture>=0) {		
-			i_picture--;
-		}
-			
-		
-		//Load others pictures
-		try {
-			LoadPicture();
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		MovePictures(command);
+ 
 	}
 
 	/**
