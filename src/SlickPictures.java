@@ -192,24 +192,7 @@ public class SlickPictures extends BasicGame implements InputProviderListener  {
 	
 	@Override
 	public void update(GameContainer arg0, int arg1) throws SlickException {
-		// TODO Auto-generated method stub
-		
-		Input input = arg0.getInput();
-		
-        if(input.isKeyDown(Input.KEY_DOWN))
-        {
-        	
-
-        }
-        /*
-        if ((Mouse.isButtonDown(0)) && ((input.getMouseX()>45 && input.getMouseX()<55) && (input.getMouseY()>370 && input.getMouseY()<500))) { 
-        	MovePictures(left);
-        }
-        
-        if ((Mouse.isButtonDown(0)) && ((input.getMouseX()>1200 && input.getMouseX()<1280) && (input.getMouseY()>370 && input.getMouseY()<500))) { 
-        	MovePictures(right);
-        }*/
-
+		// TODO Auto-generated method stub		
 	}
 	
 
@@ -304,7 +287,6 @@ public class SlickPictures extends BasicGame implements InputProviderListener  {
 		
         if ((command==attack) && ((Mouse.getX()>45 && Mouse.getX()<55) && (Mouse.getY()>370 && Mouse.getY()<500))) 
         	comm = left;
-        
         
         if ((command==attack) && ((Mouse.getX()>1200 && Mouse.getX()<1280) && (Mouse.getY()>370 && Mouse.getY()<500)))  
         	comm = right;
