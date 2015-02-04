@@ -300,22 +300,7 @@ public class SlickPictures extends BasicGame implements InputProviderListener  {
 			int pos_x = -dim_x + MARGIN_SIDE;
 			int pos_y = (dim_y - height) / 2;
 			
-			//if (picture_select)	{
-			//	picture_select = false;
-			//	pictures_select[i_pic_small] = pictures_big.get(1);//pictures[1];
-			//	i_pic_small++;
-				
-			//}
-			//else {
-				pictures_big.get(0).draw(pos_x, pos_y, width, height);//pictures[0].draw(pos_x, pos_y, width, height);
-				
-				
-			//}
-			
-			//if (i_pic_small>0)	
-			//	for (int i=0; i<i_pic_small;  i++)
-			//		pictures_select[i].draw(10+(i*(width/8))+30 , 700, width/8, height/8);
-				
+			pictures_big.get(0).draw(pos_x, pos_y, width, height);//pictures[0].draw(pos_x, pos_y, width, height);
 		}
 		
 		
