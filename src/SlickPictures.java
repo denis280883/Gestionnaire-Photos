@@ -182,9 +182,6 @@ public class SlickPictures extends BasicGame implements InputProviderListener  {
 		provider.bindCommand(new KeyControl(Input.KEY_SPACE), attack);
 		provider.bindCommand(new MouseButtonControl(0), attack);
 		provider.bindCommand(new ControllerButtonControl(0, 1), attack);
-		
-
-        
 	}
 	
 	
@@ -271,7 +268,14 @@ public class SlickPictures extends BasicGame implements InputProviderListener  {
 	       
 		g.drawString("Press A, W, Left, Up, space, mouse button 1,and gamepad controls",10,50);
 		g.drawString(message,50,100);
-		g.drawLine(30, 400, 100, 100);
+
+		// pointer left
+		g.drawLine(50, 400, 70, 380);
+		g.drawLine(50, 400, 70, 420);
+		
+		// pointer right
+		g.drawLine(1200, 380, 1220, 400);
+		g.drawLine(1200, 420, 1220, 400);
 	       
 
 	}
