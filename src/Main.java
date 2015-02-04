@@ -25,7 +25,7 @@ public class Main {
 			System.out.println("");
 			appgc = new AppGameContainer(sp);
 			appgc.setTargetFrameRate(25);
-			appgc.setDisplayMode(1280, 800, false);
+			appgc.setDisplayMode(1280, 1024, false);
 			appgc.setForceExit(false);
 			appgc.start();
 			
