@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 
 
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.command.BasicCommand;
 import org.newdawn.slick.command.Command;
@@ -16,6 +17,7 @@ import org.newdawn.slick.command.ControllerDirectionControl;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.command.KeyControl;
+import org.newdawn.slick.command.MouseButtonControl;
 //import org.newdawn.slick.command.MouseButtonControl;
 import org.lwjgl.input.Mouse;
 
@@ -178,7 +180,7 @@ public class SlickPictures extends BasicGame implements InputProviderListener  {
 		provider.bindCommand(new KeyControl(Input.KEY_W), jump);
 		provider.bindCommand(new ControllerDirectionControl(0, ControllerDirectionControl.UP), jump);
 		provider.bindCommand(new KeyControl(Input.KEY_SPACE), attack);
-		//provider.bindCommand(new MouseButtonControl(0), attack);
+		provider.bindCommand(new MouseButtonControl(0), attack);
 		provider.bindCommand(new ControllerButtonControl(0, 1), attack);
 		
 
@@ -199,14 +201,14 @@ public class SlickPictures extends BasicGame implements InputProviderListener  {
         	
 
         }
-        
+        /*
         if ((Mouse.isButtonDown(0)) && ((input.getMouseX()>45 && input.getMouseX()<55) && (input.getMouseY()>370 && input.getMouseY()<500))) { 
         	MovePictures(left);
         }
         
-        if ((Mouse.isButtonDown(0)) && ((input.getMouseX()>45 && input.getMouseX()<55) && (input.getMouseY()>370 && input.getMouseY()<500))) { 
+        if ((Mouse.isButtonDown(0)) && ((input.getMouseX()>1200 && input.getMouseX()<1280) && (input.getMouseY()>370 && input.getMouseY()<500))) { 
         	MovePictures(right);
-        }
+        }*/
 
 	}
 	
@@ -298,7 +300,16 @@ public class SlickPictures extends BasicGame implements InputProviderListener  {
 	 */
 	public void controlPressed(Command command) {
 		message = "Pressed: "+command;
-		MovePictures(command);
+		Command comm = command;
+		
+        if ((command==attack) && ((Mouse.getX()>45 && Mouse.getX()<55) && (Mouse.getY()>370 && Mouse.getY()<500))) 
+        	comm = left;
+        
+        
+        if ((command==attack) && ((Mouse.getX()>1200 && Mouse.getX()<1280) && (Mouse.getY()>370 && Mouse.getY()<500)))  
+        	comm = right;
+		
+		MovePictures(comm);
  
 	}
 
